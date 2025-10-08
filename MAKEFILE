@@ -1,0 +1,30 @@
+# Makefile — vuln-mgmt-poam-lab
+
+PY ?= python3
+PIP ?= pip3
+
+.PHONY: install validate poam summary all clean
+
+install:
+	$(PIP) install -r requirements.txt
+
+validate:
+	$(PY) -c "import pandas as pd; import sys; from src.validate import validate_scan_csv; import pandas as pd; df=pd.read_csv('data/vuln_scan_sample.csv'); validate_scan_csv(df); print('[OK] Scan CSV schema valid')"
+
+poam:
+	$(PY) src/poam_builder.py
+
+summary:
+	$(PY) src/generate_summary.py
+
+all: validate poam summary
+
+clean:
+	@echo "Removing generated docs (keep if under version control!)"
+	@rm -f docs/POAM_filled.csv
+
+make install → installs deps
+make validate → schema check on data/vuln_scan_sample.csv
+make poam → builds/updates docs/POAM_filled.csv
+make summary → (optional) refreshes docs/Executive_Summary.md
+make all → validate → poam → summary
