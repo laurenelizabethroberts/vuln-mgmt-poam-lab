@@ -1,10 +1,10 @@
-# 🧾 Vulnerability Management + POA&M Lab
+# Vulnerability Management + POA&M Lab
 
 This lab simulates a real-world vulnerability management process, including identification, prioritization, and documentation of remediation plans using the **Plan of Action & Milestones (POA&M)** format aligned with **NIST 800-53** and **FISMA**.
 
 ---
 
-## 📘 Example 1 – Critical Vulnerability (Log4Shell)
+## Example 1 – Critical Vulnerability (Log4Shell)
 
 | POAM_ID | System | Vulnerability_Title | Severity | NIST_Controls | Risk_Score | Planned_Completion_Date | Status |
 |----------|---------|---------------------|-----------|----------------|-------------|--------------------------|---------|
@@ -16,7 +16,7 @@ Java application uses vulnerable `log4j-core`. Applied WAF block, upgraded to 2.
 
 ---
 
-## ☁️ Example 2 – Cloud Misconfiguration (Public S3 Bucket)
+## Example 2 – Cloud Misconfiguration (Public S3 Bucket)
 
 | POAM_ID | System | Vulnerability_Title | Severity | NIST_Controls | Risk_Score | Planned_Completion_Date | Status |
 |----------|---------|---------------------|-----------|----------------|-------------|--------------------------|---------|
