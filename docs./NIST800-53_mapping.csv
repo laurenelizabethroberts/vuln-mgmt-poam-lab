@@ -1,0 +1,11 @@
+keyword_regex,nist_controls
+authentication|credential|password|mfa,IA-2, IA-5
+encryption|tls|openssl|heartbleed,SC-12, SC-13
+logging|monitor|siem|detection,AU-2, AU-6, SI-4
+patch|vulnerability|scan|remediation,RA-5, SI-2
+network|firewall|segmentation|rdp|smb,SC-7, AC-4
+change|configuration|baseline,CM-2, CM-6
+data|exfiltration|leak,SI-4, SC-28
+access|iam|authorization,AC-2, AC-3
+malware|rce|remote code,SI-3, SI-4
+supply chain|dependency|library|log4j|spring4shell|xz,SR-3, SI-2, RA-5
