@@ -1,0 +1,49 @@
+# Scripts for Vulnerability Management + POA&M Lab
+
+This folder contains the small toolkit that turns raw scan/misconfig inputs into an auditable **Plan of Action & Milestones (POA&M)** and (optionally) an Executive Summary.
+
+## Files
+
+- **poam_builder.py** — Main CLI. Reads `data/vuln_scan_sample.csv`, computes risk scores, maps NIST 800-53 controls, and writes `docs/POAM_filled.csv`.
+- **mappings.py** — Keyword→NIST control mapping (illustrative). Central place to expand/adjust mappings.
+- **risk.py** — Simple, explainable risk scoring using CVSS base + exploitability bonus + asset criticality weight.
+- **validate.py** — Lightweight schema validation for the scan CSV (ensures required columns exist).
+- **generate_summary.py** *(optional)* — Builds/updates `docs/Executive_Summary.md` from the POA&M rows (top risks, quick narrative).
+- **utils.py** — Tiny helpers (date formatting, etc.).
+
+## Quickstart
+
+From the repository root:
+
+```bash
+# 1) Install dependencies
+pip install -r requirements.txt
+
+# 2) Validate input CSV
+python src/poam_builder.py  # also fine to run directly
+# or use Make targets:
+make validate
+
+# 3) Build/append POA&M entries
+make poam
+```
+# 4) (Optional) Generate Executive Summary
+make summary
+
+## Input Schema
+Required columns:
+host, vuln_title, severity, cvss_base, exploit_available, asset_criticality
+Optional columns:
+cve, description, discovered_date
+
+## Risk Score
+risk = cvss_base
+     + 2.0 if exploit_available else 0
+     + asset_criticality_weight  # Low=0, Medium=1, High=2, Critical=3
+
+The result is rounded to an integer for easy sorting prioritization
+
+## NIST 800-53 Mapping
+Mappings are heuristic and illustrative, intended to show thought process. For real programs, map findings to your SSP, system boundary, and inherited controls.
+
+
